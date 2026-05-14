@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Istanbul Bites — Kebab, Grill & More · Tiensevest 14 · Leuven</title>
+  <meta name="description" content="Istanbul Bites is Leuven's Turkish street food gem aan het station. Döner, kebap, kumpir, pizza, baklava. Bezorging via Uber Eats, Deliveroo & Takeaway. Tiensevest 14, Leuven." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --black:    #0d0d0d;
+      --charcoal: #1a1a1a;
+      --red:      #c0392b;
+      --red-dark: #9b2d22;
+      --gold:     #e8a020;
+      --cream:    #f5f0e8;
+      --creamBg:  #faf6ef;
+      --offwhite: #f5f0e8;
+      --gray:     #aaa;
+      --shadow:   0 4px 24px rgba(0,0,0,0.45);
+      --radius:   10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      color: var(--offwhite);
+      background: var(--black);
+      line-height: 1.7;
+    }
+
+    h1, h2, h3 { line-height: 1.15; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── NAVBAR ── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-logo img { max-height: 55px; object-fit: contain; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      color: var(--cream);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+    }
+
+    .lang-toggle {
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      padding: 4px 12px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      user-select: none;
+    }
+    .lang-toggle:hover { background: var(--gold); color: var(--black); }
+
+    .btn-nav {
+      background: var(--red);
+      color: var(--offwhite) !important;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      transition: background 0.2s;
+    }
+    .btn-nav:hover { background: var(--red-dark); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--cream);
+      border-radius: 2px;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 580px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background-image: url('images/hero.png');
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 1.5rem;
+      max-width: 820px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(192,57,43,0.25);
+      border: 1px solid rgba(192,57,43,0.6);
+      border-radius: 30px;
+      padding: 6px 18px;
+      font-size: 0.78rem;
+      color: var(--cream);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.3rem;
+    }
+
+    .hero-h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 14vw, 10rem);
+      line-height: 0.88;
+      letter-spacing: 0.04em;
+      margin-bottom: 1rem;
+    }
+    .hero-h1 .red  { color: var(--red); display: block; }
+    .hero-h1 .gold { color: var(--gold); display: block; }
+
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(0.95rem, 2.2vw, 1.2rem);
+      color: var(--cream);
+      opacity: 0.88;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-icons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.6rem;
+      margin-bottom: 2rem;
+      font-size: 0.82rem;
+      color: rgba(245,240,232,0.78);
+      letter-spacing: 0.05em;
+    }
+    .hero-icons span { white-space: nowrap; }
+
+    .hero-btns {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn-red {
+      background: var(--red);
+      color: var(--offwhite);
+      border: none;
+      border-radius: 8px;
+      padding: 14px 32px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-red:hover { background: var(--red-dark); transform: translateY(-2px); }
+
+    .btn-gold-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      padding: 12px 30px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-gold-outline:hover { background: rgba(232,160,32,0.12); transform: translateY(-2px); }
+
+    .hero-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: rgba(245,240,232,0.65);
+      letter-spacing: 0.08em;
+    }
+    .pulse-dot {
+      width: 8px; height: 8px;
+      background: #5ecb6e;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); opacity: 1; }
+      50%      { transform: scale(1.5); opacity: 0.55; }
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: rgba(245,240,232,0.4);
+      font-size: 1.1rem;
+      animation: bounce 2.5s infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(7px); }
+    }
+
+    /* ── BADGES STRIP ── */
+    #badges {
+      background: var(--charcoal);
+      padding: 3.5rem 5%;
+    }
+    .badges-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .badge-card {
+      text-align: center;
+      padding: 2rem 1.2rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(232,160,32,0.18);
+      background: rgba(255,255,255,0.03);
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .badge-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .badge-icon { font-size: 2rem; margin-bottom: 0.7rem; }
+    .badge-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .badge-card p {
+      font-size: 0.82rem;
+      color: var(--gray);
+      font-weight: 300;
+    }
+
+    /* ── MENU HIGHLIGHTS ── */
+    #highlights {
+      background: var(--creamBg);
+      padding: 5.5rem 5%;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-header h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      letter-spacing: 0.06em;
+      color: var(--charcoal);
+      margin-bottom: 0.4rem;
+    }
+    .section-header p {
+      font-size: 0.95rem;
+      color: #666;
+      font-weight: 300;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    #highlights .section-label { color: var(--red); }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .highlight-card {
+      background: #fff;
+      border: 2px solid var(--red);
+      border-radius: var(--radius);
+      padding: 2.2rem 1.8rem;
+      box-shadow: 0 4px 20px rgba(192,57,43,0.10);
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .highlight-card:hover { transform: translateY(-5px); box-shadow: 0 10px 32px rgba(192,57,43,0.18); }
+    .hl-badge {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: var(--gold);
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 20px;
+      padding: 3px 10px;
+    }
+    .hl-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .highlight-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.07em;
+      color: var(--red);
+      margin-bottom: 0.5rem;
+    }
+    .highlight-card p {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.65;
+      font-weight: 300;
+      margin-bottom: 0.8rem;
+    }
+    .hl-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--charcoal);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── FULL MENU GRID ── */
+    #fullmenu {
+      background: var(--charcoal);
+      padding: 5.5rem 5%;
+    }
+    #fullmenu .section-header h2 { color: var(--offwhite); }
+    #fullmenu .section-header p  { color: var(--gray); }
+
+    .menu-categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .menu-cat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(192,57,43,0.22);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.2rem;
+      text-align: center;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .menu-cat:hover { border-color: var(--red); background: rgba(192,57,43,0.08); transform: translateY(-3px); }
+    .menu-cat .cat-icon { font-size: 1.6rem; margin-bottom: 0.5rem; }
+    .menu-cat h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: var(--offwhite);
+      margin-bottom: 0.3rem;
+    }
+    .menu-cat p { font-size: 0.78rem; color: var(--gray); font-weight: 300; line-height: 1.5; }
+
+    .menu-cta { text-align: center; }
+    .menu-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--red);
+      color: #fff;
+      border-radius: 8px;
+      padding: 14px 32px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .menu-cta a:hover { background: var(--red-dark); transform: translateY(-2px); }
+
+    /* ── GALLERY ── */
+    #gallery {
+      background: var(--black);
+      padding: 5.5rem 5%;
+    }
+    #gallery .section-header h2 { color: var(--offwhite); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      aspect-ratio: 1 / 1;
+      transition: border-color 0.3s;
+    }
+    .gallery-item:hover { border-color: var(--red); }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.07); }
+
+    /* ── BAKLAVA ── */
+    #baklava {
+      background: var(--gold);
+      padding: 5.5rem 5%;
+    }
+    .baklava-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .baklava-img img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .baklava-text .section-label { color: rgba(13,13,13,0.6); }
+    .baklava-text h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      letter-spacing: 0.06em;
+      color: var(--black);
+      margin-bottom: 1.2rem;
+    }
+    .baklava-text p {
+      font-size: 1rem;
+      color: rgba(13,13,13,0.82);
+      font-weight: 400;
+      line-height: 1.8;
+      margin-bottom: 0.8rem;
+    }
+    .baklava-fact {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.88rem;
+      color: var(--black);
+      font-weight: 600;
+      margin-top: 0.4rem;
+    }
+    .baklava-fact i { color: var(--red); }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--creamBg);
+      padding: 5.5rem 5%;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .about-img img {
+      width: 100%;
+      border-radius: 12px;
+      border: 3px solid var(--red);
+      box-shadow: 0 4px 24px rgba(192,57,43,0.18);
+    }
+    .about-text .section-label { color: var(--red); }
+    .about-text h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      letter-spacing: 0.05em;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+    .about-text .sub-italic {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--red);
+      margin-bottom: 1rem;
+    }
+    .about-text p {
+      font-size: 0.95rem;
+      color: #444;
+      font-weight: 300;
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+    .about-quote {
+      border-left: 3px solid var(--gold);
+      padding-left: 1.2rem;
+      margin-top: 1.5rem;
+    }
+    .about-quote p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.92rem;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 0.3rem;
+    }
+    .about-quote cite { font-size: 0.75rem; color: var(--red); font-weight: 600; font-style: normal; letter-spacing: 0.08em; }
+
+    /* ── DELIVERY ── */
+    #delivery {
+      background: var(--red);
+      padding: 5rem 5%;
+      text-align: center;
+    }
+    #delivery .section-label { color: rgba(255,255,255,0.65); }
+    #delivery h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      letter-spacing: 0.07em;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    #delivery .delivery-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.82);
+      font-weight: 300;
+      margin-bottom: 3rem;
+    }
+
+    .delivery-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 860px;
+      margin: 0 auto 2.5rem;
+    }
+    .delivery-card {
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .delivery-card:hover { background: rgba(0,0,0,0.32); transform: translateY(-3px); }
+    .delivery-card .del-icon { font-size: 2rem; margin-bottom: 0.6rem; }
+    .delivery-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+    .delivery-card p { font-size: 0.8rem; color: rgba(255,255,255,0.7); font-weight: 300; }
+
+    .delivery-direct p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 1rem;
+    }
+    .btn-gold-big {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: var(--black);
+      border-radius: 8px;
+      padding: 15px 36px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.1em;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-gold-big:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--black);
+      padding: 5.5rem 5%;
+    }
+    #contact .section-header h2 { color: var(--offwhite); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 0; }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .info-item:last-of-type { border-bottom: none; }
+    .info-item i { color: var(--gold); width: 18px; margin-top: 3px; font-size: 0.9rem; flex-shrink: 0; }
+    .info-item .info-text { font-size: 0.9rem; color: rgba(245,240,232,0.8); font-weight: 300; line-height: 1.6; }
+    .info-item .info-text strong { color: var(--cream); font-weight: 500; }
+    .info-item .info-text a { color: var(--gold); transition: opacity 0.2s; }
+    .info-item .info-text a:hover { opacity: 0.75; }
+
+    .map-wrap { margin-top: 2rem; }
+
+    .contact-form-wrap {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(192,57,43,0.22);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+    }
+    .contact-form-wrap h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.07em;
+      color: var(--cream);
+      margin-bottom: 1.8rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      font-size: 0.75rem;
+      color: rgba(245,240,232,0.6);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .form-group input,
+    .form-group textarea {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(245,240,232,0.15);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(245,240,232,0.3); }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--red); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .btn-submit-red {
+      width: 100%;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-submit-red:hover { background: var(--red-dark); transform: translateY(-2px); }
+    .form-success {
+      display: none;
+      background: rgba(94,203,110,0.12);
+      border: 1px solid rgba(94,203,110,0.4);
+      border-radius: 8px;
+      padding: 14px 18px;
+      color: #8edd9a;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #000;
+      border-top: 1px solid rgba(192,57,43,0.3);
+      padding: 2.2rem 5%;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-logo img { max-height: 45px; object-fit: contain; }
+    .footer-logo p { font-size: 0.72rem; color: rgba(245,240,232,0.4); letter-spacing: 0.1em; margin-top: 4px; }
+    .footer-center { font-size: 0.78rem; color: rgba(245,240,232,0.35); text-align: center; line-height: 1.7; }
+    .footer-links { display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: flex-end; }
+    .footer-links a { font-size: 0.8rem; color: var(--red); font-weight: 500; letter-spacing: 0.06em; transition: opacity 0.2s; }
+    .footer-links a:hover { opacity: 0.7; }
+
+    /* ── MOBILE NAV ── */
+    .nav-mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: var(--black);
+      border-bottom: 2px solid var(--red);
+      padding: 1.5rem 5%;
+      z-index: 999;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a { font-size: 1rem; font-weight: 500; color: var(--cream); letter-spacing: 0.06em; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links, .btn-nav { display: none; }
+      .hamburger { display: flex; }
+
+      .badges-grid       { grid-template-columns: 1fr 1fr; }
+      .highlights-grid   { grid-template-columns: 1fr; }
+      .menu-categories   { grid-template-columns: 1fr 1fr; }
+      .gallery-grid      { grid-template-columns: 1fr 1fr; }
+      .baklava-grid      { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-grid        { grid-template-columns: 1fr; gap: 2.5rem; }
+      .delivery-cards    { grid-template-columns: 1fr; }
+      .contact-grid      { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-inner      { flex-direction: column; text-align: center; align-items: center; }
+      .footer-links      { justify-content: center; }
+    }
+
+    @media (max-width: 480px) {
+      .badges-grid     { grid-template-columns: 1fr; }
+      .menu-categories { grid-template-columns: 1fr; }
+      .gallery-grid    { grid-template-columns: 1fr; }
+      .hero-h1         { font-size: 4.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo" aria-label="Istanbul Bites home">
+    <img src="images/logo.png" alt="Istanbul Bites logo" />
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#highlights" data-nl="Menu"      data-en="Menu">Menu</a></li>
+    <li><a href="#about"      data-nl="Over ons"   data-en="About">Over ons</a></li>
+    <li><a href="#delivery"   data-nl="Bezorging"  data-en="Delivery">Bezorging</a></li>
+    <li><a href="#contact"    data-nl="Contact"    data-en="Contact">Contact</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <div class="lang-toggle" id="langToggle">NL | EN</div>
+    <a href="https://www.istanbul-bites-leuven.be/" target="_blank" rel="noopener" class="btn-nav" data-nl="Bestel nu" data-en="Order now">Bestel nu</a>
+    <div class="hamburger" id="hamburger" aria-label="Menu openen">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="#highlights" data-nl="Menu"     data-en="Menu">Menu</a>
+  <a href="#about"      data-nl="Over ons" data-en="About">Over ons</a>
+  <a href="#delivery"   data-nl="Bezorging" data-en="Delivery">Bezorging</a>
+  <a href="#contact"    data-nl="Contact"  data-en="Contact">Contact</a>
+</div>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🥙 <span>Tiensevest 14 · <span data-nl="Aan het station" data-en="At the station">Aan het station</span> · Leuven</span></div>
+    <h1 class="hero-h1">
+      <span class="red">Istanbul</span>
+      <span class="gold">Bites</span>
+    </h1>
+    <p class="hero-sub" data-nl="Kebab · Grill · Pizza · Baklava — aan het station" data-en="Kebab · Grill · Pizza · Baklava — at the station">Kebab · Grill · Pizza · Baklava — aan het station</p>
+    <div class="hero-icons">
+      <span>🥙 Kebab</span>
+      <span>🍕 Pizza</span>
+      <span>🍮 Baklava</span>
+      <span>🚴 <span data-nl="Bezorging" data-en="Delivery">Bezorging</span></span>
+    </div>
+    <div class="hero-btns">
+      <a href="#highlights" class="btn-red" data-nl="Bekijk ons menu" data-en="View our menu">Bekijk ons menu</a>
+      <a href="https://www.istanbul-bites-leuven.be/" target="_blank" rel="noopener" class="btn-gold-outline" data-nl="Bestel online" data-en="Order online">Bestel online</a>
+    </div>
+    <div class="hero-status">
+      <span class="pulse-dot"></span>
+      <span data-nl="Vandaag open · 11:00 – 22:00" data-en="Open today · 11:00 – 22:00">Vandaag open · 11:00 – 22:00</span>
+    </div>
+  </div>
+  <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
+</section>
+
+<!-- ── BADGES STRIP ── -->
+<section id="badges">
+  <div class="badges-grid">
+    <div class="badge-card fade-up">
+      <div class="badge-icon">🥙</div>
+      <h3 data-nl="Vers bereid" data-en="Freshly made">Vers bereid</h3>
+      <p data-nl="Alles dagelijks vers met Turkse passie" data-en="Everything freshly made daily with Turkish passion">Alles dagelijks vers met Turkse passie</p>
+    </div>
+    <div class="badge-card fade-up">
+      <div class="badge-icon">🍮</div>
+      <h3 data-nl="Echte baklava" data-en="Real baklava">Echte baklava</h3>
+      <p data-nl="Authentieke Turkse baklava — de beste in Leuven" data-en="Authentic Turkish baklava — the best in Leuven">Authentieke Turkse baklava — de beste in Leuven</p>
+    </div>
+    <div class="badge-card fade-up">
+      <div class="badge-icon">🚴</div>
+      <h3>Uber Eats · Deliveroo · Takeaway</h3>
+      <p data-nl="Thuis genieten in 15–35 min" data-en="Enjoy at home in 15–35 min">Thuis genieten in 15–35 min</p>
+    </div>
+    <div class="badge-card fade-up">
+      <div class="badge-icon">📍</div>
+      <h3 data-nl="Aan het station" data-en="At the station">Aan het station</h3>
+      <p data-nl="Tiensevest 14 — eerste wat je ziet uit de trein" data-en="Tiensevest 14 — first thing off the train">Tiensevest 14 — eerste wat je ziet uit de trein</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── MENU HIGHLIGHTS ── -->
+<section id="highlights">
+  <div class="section-header fade-up">
+    <span class="section-label" data-nl="Onze toppers" data-en="Our highlights">Onze toppers</span>
+    <h2 data-nl="Onze Specialiteiten" data-en="Our Specialities">Onze Specialiteiten</h2>
+    <p data-nl="Van döner tot baklava — alles vers bereid met Turkse passie" data-en="From döner to baklava — everything freshly made with Turkish passion">Van döner tot baklava — alles vers bereid met Turkse passie</p>
+  </div>
+  <div class="highlights-grid">
+    <div class="highlight-card fade-up">
+      <div class="hl-icon">🥙</div>
+      <h3 data-nl="Döner &amp; Kebap" data-en="Döner &amp; Kebab">Döner &amp; Kebap</h3>
+      <p data-nl="Döner kip of kebap — zacht vlees, smaakvolle saus, vers brood. Aanbevolen door Dr Döner Guide!" data-en="Chicken döner or kebab — soft meat, flavoursome sauce, fresh bread. Recommended by Dr Döner Guide!">Döner kip of kebap — zacht vlees, smaakvolle saus, vers brood. Aanbevolen door Dr Döner Guide!</p>
+      <div class="hl-price" data-nl="Vanaf €6.50" data-en="From €6.50">Vanaf €6.50</div>
+    </div>
+    <div class="highlight-card fade-up">
+      <span class="hl-badge" data-nl="Must Try" data-en="Must Try">⭐ Must Try</span>
+      <div class="hl-icon">🥔</div>
+      <h3>Kumpir</h3>
+      <p data-nl="Onze gevulde gebakken aardappel — geliefd bij elke klant. Zeker proberen!" data-en="Our stuffed baked potato — loved by every customer. A must try!">Onze gevulde gebakken aardappel — geliefd bij elke klant. Zeker proberen!</p>
+    </div>
+    <div class="highlight-card fade-up">
+      <div class="hl-icon">🍮</div>
+      <h3>Baklava</h3>
+      <p data-nl="Authentieke Turkse baklava — de beste in Leuven. Knapperig, zoet, onweerstaanbaar." data-en="Authentic Turkish baklava — the best in Leuven. Crispy, sweet, irresistible.">Authentieke Turkse baklava — de beste in Leuven. Knapperig, zoet, onweerstaanbaar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FULL MENU GRID ── -->
+<section id="fullmenu">
+  <div class="section-header fade-up">
+    <span class="section-label" data-nl="Volledig menu" data-en="Full menu">Volledig menu</span>
+    <h2 data-nl="Ons Volledige Menu" data-en="Our Full Menu">Ons Volledige Menu</h2>
+    <p data-nl="Voor elk moment en elke smaak" data-en="For every moment and every taste">Voor elk moment en elke smaak</p>
+  </div>
+  <div class="menu-categories">
+    <div class="menu-cat fade-up">
+      <div class="cat-icon">🥙</div>
+      <h4 data-nl="Döner &amp; Kebap" data-en="Döner &amp; Kebab">Döner &amp; Kebap</h4>
+      <p>Durum · Pita · Mix</p>
+    </div>
+    <div class="menu-cat fade-up">
+      <div class="cat-icon">🍽️</div>
+      <h4 data-nl="Schotels" data-en="Plates">Schotels</h4>
+      <p data-nl="Met friet &amp; saus" data-en="With fries &amp; sauce">Met friet &amp; saus</p>
+    </div>
+    <div class="menu-cat fade-up">
+      <div class="cat-icon">🍕</div>
+      <h4 data-nl="Pizza's" data-en="Pizzas">Pizza's</h4>
+      <p>Margherita · Mix</p>
+    </div>
+    <div class="menu-cat fade-up">
+      <div class="cat-icon">🍔</div>
+      <h4>Burgers</h4>
+      <p data-nl="Vers bereid" data-en="Freshly made">Vers bereid</p>
+    </div>
+    <div class="menu-cat fade-up">
+      <div class="cat-icon">🌮</div>
+      <h4>Tacos</h4>
+      <p data-nl="Turkse twist" data-en="Turkish twist">Turkse twist</p>
+    </div>
+    <div class="menu-cat fade-up">
+      <div class="cat-icon">🥙</div>
+      <h4 data-nl="Broodjes Kebap" data-en="Kebab Wraps">Broodjes Kebap</h4>
+      <p data-nl="Vers brood" data-en="Fresh bread">Vers brood</p>
+    </div>
+    <div class="menu-cat fade-up">
+      <div class="cat-icon">🥔</div>
+      <h4>Kumpir</h4>
+      <p data-nl="Gevulde aardappel" data-en="Stuffed potato">Gevulde aardappel</p>
+    </div>
+    <div class="menu-cat fade-up">
+      <div class="cat-icon">🍟</div>
+      <h4 data-nl="Frieten &amp; Snacks" data-en="Fries &amp; Snacks">Frieten &amp; Snacks</h4>
+      <p data-nl="Klein + 1 saus + drank" data-en="Small + 1 sauce + drink">Klein + 1 saus + drank</p>
+    </div>
+    <div class="menu-cat fade-up">
+      <div class="cat-icon">🍮</div>
+      <h4 data-nl="Baklava &amp; Desserten" data-en="Baklava &amp; Desserts">Baklava &amp; Desserten</h4>
+      <p data-nl="De beste in Leuven" data-en="The best in Leuven">De beste in Leuven</p>
+    </div>
+    <div class="menu-cat fade-up">
+      <div class="cat-icon">🧒</div>
+      <h4 data-nl="Kids Menu" data-en="Kids Menu">Kids Menu</h4>
+      <p data-nl="Voor de kleintjes" data-en="For the little ones">Voor de kleintjes</p>
+    </div>
+    <div class="menu-cat fade-up">
+      <div class="cat-icon">🥣</div>
+      <h4 data-nl="Soepen" data-en="Soups">Soepen</h4>
+      <p data-nl="Warm &amp; vers" data-en="Warm &amp; fresh">Warm &amp; vers</p>
+    </div>
+    <div class="menu-cat fade-up">
+      <div class="cat-icon">🥤</div>
+      <h4 data-nl="Dranken" data-en="Drinks">Dranken</h4>
+      <p data-nl="Fris &amp; warm" data-en="Cold &amp; hot">Fris &amp; warm</p>
+    </div>
+  </div>
+  <div class="menu-cta fade-up">
+    <a href="https://www.istanbul-bites-leuven.be/" target="_blank" rel="noopener">
+      <span data-nl="Volledig menu &amp; online bestellen" data-en="Full menu &amp; order online">Volledig menu &amp; online bestellen</span>
+      <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+<!-- ── GALLERY ── -->
+<section id="gallery">
+  <div class="section-header fade-up">
+    <span class="section-label" data-nl="Sfeer" data-en="Atmosphere">Sfeer</span>
+    <h2 data-nl="Onze Gerechten" data-en="Our Food">Onze Gerechten</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item fade-up"><img src="images/food-1.png"  alt="Istanbul Bites vleesgerecht" loading="lazy" /></div>
+    <div class="gallery-item fade-up"><img src="images/food-2.png"  alt="Istanbul Bites gerecht"      loading="lazy" /></div>
+    <div class="gallery-item fade-up"><img src="images/mixed.png"   alt="Istanbul Bites döner baklava mix" loading="lazy" /></div>
+    <div class="gallery-item fade-up"><img src="images/baklava.png" alt="Istanbul Bites baklava"      loading="lazy" /></div>
+    <div class="gallery-item fade-up"><img src="images/burger.png"  alt="Istanbul Bites burger"       loading="lazy" /></div>
+    <div class="gallery-item fade-up"><img src="images/food-3.png"  alt="Istanbul Bites gerecht"      loading="lazy" /></div>
+    <div class="gallery-item fade-up"><img src="images/food-4.png"  alt="Istanbul Bites gerecht"      loading="lazy" /></div>
+  </div>
+</section>
+
+<!-- ── BAKLAVA ── -->
+<section id="baklava">
+  <div class="baklava-grid">
+    <div class="baklava-img fade-up">
+      <img src="images/baklava.png" alt="Authentieke Turkse baklava Istanbul Bites Leuven" loading="lazy" />
+    </div>
+    <div class="baklava-text fade-up">
+      <span class="section-label" data-nl="Dessert" data-en="Dessert">Dessert</span>
+      <h2 data-nl="Echte Turkse Baklava 🍮" data-en="Real Turkish Baklava 🍮">Echte Turkse Baklava 🍮</h2>
+      <p data-nl="Bij Istanbul Bites serveren we authentieke Turkse baklava — knapperig filodeeg, honing, pistache. Perfect als dessert of om mee te nemen." data-en="At Istanbul Bites we serve authentic Turkish baklava — crispy filo pastry, honey, pistachio. Perfect as dessert or to take away.">Bij Istanbul Bites serveren we authentieke Turkse baklava — knapperig filodeeg, honing, pistache. Perfect als dessert of om mee te nemen.</p>
+      <div class="baklava-fact"><i class="fas fa-star"></i> <span data-nl="De beste baklava in Leuven" data-en="The best baklava in Leuven">De beste baklava in Leuven</span></div>
+      <div class="baklava-fact"><i class="fas fa-box"></i> <span data-nl="Ook om mee te nemen" data-en="Also available to take away">Ook om mee te nemen</span></div>
+      <div class="baklava-fact"><i class="fas fa-leaf"></i> <span data-nl="Pistache · Honing · Filodeeg" data-en="Pistachio · Honey · Filo pastry">Pistache · Honing · Filodeeg</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img fade-up">
+      <img src="images/interior.png" alt="Istanbul Bites interieur Leuven" loading="lazy" />
+    </div>
+    <div class="about-text fade-up">
+      <span class="section-label" data-nl="Over ons" data-en="About us">Over ons</span>
+      <h2 data-nl="Van het station, rechtstreeks naar smaak." data-en="From the station, straight to flavour.">Van het station, rechtstreeks naar smaak.</h2>
+      <p class="sub-italic" data-nl="Het eerste wat je ziet als je uit de trein stapt." data-en="The first thing you see stepping off the train.">Het eerste wat je ziet als je uit de trein stapt.</p>
+      <p data-nl="Istanbul Bites verwelkomt je op Tiensevest 14, vlak aan het Leuvense station. Ruim, warm en gezellig — met veel zitplaatsen voor een comfortabele maaltijd." data-en="Istanbul Bites welcomes you at Tiensevest 14, right next to Leuven station. Spacious, warm and cosy — with lots of seating for a comfortable meal.">Istanbul Bites verwelkomt je op Tiensevest 14, vlak aan het Leuvense station. Ruim, warm en gezellig — met veel zitplaatsen voor een comfortabele maaltijd.</p>
+      <p data-nl="Van döner tot kumpir, van pizza tot baklava — alles vers bereid met Turkse passie." data-en="From döner to kumpir, from pizza to baklava — everything freshly prepared with Turkish passion.">Van döner tot kumpir, van pizza tot baklava — alles vers bereid met Turkse passie.</p>
+      <div class="about-quote">
+        <p>"The meat was soft and juicy, the sauce was flavoursome. Much better than the Google reviews made out!"</p>
+        <cite>— Dr Döner Guide</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DELIVERY ── -->
+<section id="delivery">
+  <div class="section-header fade-up">
+    <span class="section-label" data-nl="Bezorging" data-en="Delivery">Bezorging</span>
+    <h2 data-nl="Thuis genieten?" data-en="Enjoy at home?">Thuis genieten?</h2>
+    <p class="delivery-sub" data-nl="Bestel via uw favoriete platform — bezorgd in 15–35 minuten." data-en="Order via your favourite platform — delivered in 15–35 minutes.">Bestel via uw favoriete platform — bezorgd in 15–35 minuten.</p>
+  </div>
+  <div class="delivery-cards">
+    <a href="https://www.ubereats.com/" target="_blank" rel="noopener" class="delivery-card fade-up">
+      <div class="del-icon">🛵</div>
+      <h3>Uber Eats</h3>
+      <p data-nl="Snel bezorgd aan uw deur" data-en="Quickly delivered to your door">Snel bezorgd aan uw deur</p>
+    </a>
+    <a href="https://www.deliveroo.be/" target="_blank" rel="noopener" class="delivery-card fade-up">
+      <div class="del-icon">🛵</div>
+      <h3>Deliveroo</h3>
+      <p data-nl="Vers &amp; warm bij u thuis" data-en="Fresh &amp; hot at your home">Vers &amp; warm bij u thuis</p>
+    </a>
+    <a href="https://www.takeaway.com/" target="_blank" rel="noopener" class="delivery-card fade-up">
+      <div class="del-icon">📱</div>
+      <h3>Takeaway.com</h3>
+      <p data-nl="Gemakkelijk online bestellen" data-en="Easy online ordering">Gemakkelijk online bestellen</p>
+    </a>
+  </div>
+  <div class="delivery-direct fade-up">
+    <p data-nl="Of bestel rechtstreeks op onze website:" data-en="Or order directly on our website:">Of bestel rechtstreeks op onze website:</p>
+    <a href="https://www.istanbul-bites-leuven.be/" target="_blank" rel="noopener" class="btn-gold-big">
+      <i class="fas fa-utensils"></i>
+      <span data-nl="Bestel op istanbul-bites-leuven.be" data-en="Order at istanbul-bites-leuven.be">Bestel op istanbul-bites-leuven.be</span>
+    </a>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="section-header fade-up">
+    <span class="section-label" data-nl="Contact" data-en="Contact">Contact</span>
+    <h2 data-nl="Vind ons aan het station" data-en="Find us at the station">Vind ons aan het station</h2>
+  </div>
+  <div class="contact-grid">
+    <!-- Left: info + map -->
+    <div class="contact-info fade-up">
+      <div class="info-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <div class="info-text"><strong>Tiensevest 14, 3000 Leuven</strong></div>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-phone"></i>
+        <div class="info-text"><a href="tel:+3216460513">+32 16 46 05 13</a></div>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-envelope"></i>
+        <div class="info-text"><a href="mailto:Istanbulibites@gmail.com">Istanbulibites@gmail.com</a></div>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-globe"></i>
+        <div class="info-text"><a href="https://www.istanbul-bites-leuven.be/" target="_blank" rel="noopener">istanbul-bites-leuven.be</a></div>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-clock"></i>
+        <div class="info-text">
+          <strong data-nl="Elke dag: 11:00 – 22:00" data-en="Every day: 11:00 – 22:00">Elke dag: 11:00 – 22:00</strong>
+        </div>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-train"></i>
+        <div class="info-text" data-nl="Vlak naast het treinstation van Leuven" data-en="Right next to Leuven train station">Vlak naast het treinstation van Leuven</div>
+      </div>
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps?q=Tiensevest+14,+3000+Leuven&output=embed"
+          width="100%"
+          height="300"
+          style="border:0;border-radius:10px;opacity:0.88;"
+          allowfullscreen
+          loading="lazy"
+          title="Istanbul Bites op Google Maps">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Right: contact form -->
+    <div class="contact-form-wrap fade-up">
+      <h3 data-nl="Stuur een bericht" data-en="Send a message">Stuur een bericht</h3>
+      <form id="contactForm" novalidate>
+        <div class="form-group">
+          <label data-nl="Naam" data-en="Name">Naam</label>
+          <input type="text" id="cName" data-nl-placeholder="Uw naam" data-en-placeholder="Your name" placeholder="Uw naam" required />
+        </div>
+        <div class="form-group">
+          <label data-nl="Email" data-en="Email">Email</label>
+          <input type="email" id="cEmail" data-nl-placeholder="uw@email.be" data-en-placeholder="your@email.com" placeholder="uw@email.be" required />
+        </div>
+        <div class="form-group">
+          <label data-nl="Bericht" data-en="Message">Bericht</label>
+          <textarea id="cMsg" data-nl-placeholder="Uw bericht, vraag of bestelling…" data-en-placeholder="Your message, question or order…" placeholder="Uw bericht, vraag of bestelling…" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit-red" data-nl="Verstuur →" data-en="Send →">Verstuur →</button>
+        <div class="form-success" id="contactSuccess" data-nl="Bedankt! We antwoorden zo snel mogelijk." data-en="Thanks! We'll get back to you soon.">
+          Bedankt! We antwoorden zo snel mogelijk.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="images/logo.png" alt="Istanbul Bites" />
+      <p>Tiensevest 14 · 3000 Leuven</p>
+    </div>
+    <div class="footer-center">
+      © 2026 Istanbul Bites · Leuven<br />
+      <a href="mailto:Istanbulibites@gmail.com" style="color:rgba(245,240,232,0.35)">Istanbulibites@gmail.com</a>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.facebook.com/p/Istanbul-Bites-61551956776895" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.ubereats.com/" target="_blank" rel="noopener">Uber Eats</a>
+      <a href="https://www.deliveroo.be/" target="_blank" rel="noopener">Deliveroo</a>
+      <a href="https://www.takeaway.com/" target="_blank" rel="noopener">Takeaway</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Language toggle ──
+  let currentLang = 'nl';
+
+  function applyLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+
+    document.title = lang === 'nl'
+      ? 'Istanbul Bites — Kebab, Grill & More · Tiensevest 14 · Leuven'
+      : 'Istanbul Bites — Kebab, Grill & More · Tiensevest 14 · Leuven';
+
+    document.querySelectorAll('[data-nl], [data-en]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (val !== null) el.textContent = val;
+    });
+
+    document.querySelectorAll('[data-nl-placeholder], [data-en-placeholder]').forEach(el => {
+      const ph = el.getAttribute('data-' + lang + '-placeholder');
+      if (ph) el.placeholder = ph;
+    });
+
+    document.getElementById('langToggle').textContent = lang === 'nl' ? 'NL | EN' : 'EN | NL';
+
+    const cs = document.getElementById('contactSuccess');
+    if (cs) {
+      const msg = cs.getAttribute('data-' + lang);
+      if (msg) cs.textContent = msg;
+    }
+  }
+
+  document.getElementById('langToggle').addEventListener('click', () => {
+    applyLang(currentLang === 'nl' ? 'en' : 'nl');
+  });
+
+  // ── Hamburger ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // ── Scroll fade-up ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── Contact form ──
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name  = document.getElementById('cName').value.trim();
+    const email = document.getElementById('cEmail').value.trim();
+    const msg   = document.getElementById('cMsg').value.trim();
+    if (!name || !email || !msg) return;
+
+    const success = document.getElementById('contactSuccess');
+    success.style.display = 'block';
+    this.querySelectorAll('input,textarea,button').forEach(el => el.disabled = true);
+
+    const txt = success.getAttribute('data-' + currentLang);
+    if (txt) success.textContent = txt;
+  });
+</script>
+</body>
+</html>
